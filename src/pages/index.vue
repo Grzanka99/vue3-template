@@ -1,9 +1,17 @@
 <script setup lang="ts">
-const { t } = useI18n();
+import DisplayNames from '@/components/display-names.vue';
+import { useUserStore } from '@/store/user';
+
+const userStore = useUserStore();
+
+const handleChange = (event: any) => {
+  userStore.setNewName(event.target.value);
+};
 </script>
 
 <template>
-  <div>{{ t('not-found') }}</div>
+  <input @keydown.enter="handleChange" />
+  <display-names />
 </template>
 
 <route lang="yaml">

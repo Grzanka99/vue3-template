@@ -1,20 +1,20 @@
-import path from "path";
-import { defineConfig } from "vite";
-import Vue from "@vitejs/plugin-vue";
-import Pages from "vite-plugin-pages";
-import Layouts from "vite-plugin-vue-layouts";
-import Icons from "unplugin-icons/vite";
-import AutoImport from "unplugin-auto-import/vite";
-import { VitePWA } from "vite-plugin-pwa";
-import VueI18n from "@intlify/vite-plugin-vue-i18n";
-import Inspect from "vite-plugin-inspect";
+import path from 'path';
+import { defineConfig } from 'vite';
+import Vue from '@vitejs/plugin-vue';
+import Pages from 'vite-plugin-pages';
+import Layouts from 'vite-plugin-vue-layouts';
+import Icons from 'unplugin-icons/vite';
+import AutoImport from 'unplugin-auto-import/vite';
+import { VitePWA } from 'vite-plugin-pwa';
+import VueI18n from '@intlify/vite-plugin-vue-i18n';
+import Inspect from 'vite-plugin-inspect';
 
 export default defineConfig({
   resolve: {
     alias: {
-      "@/": `${path.resolve(__dirname, "src")}/`,
-      "@types/": `${path.resolve(__dirname, "src")}/common/types/`,
-      "@store/": `${path.resolve(__dirname, "src")}/store/`,
+      '@/': `${path.resolve(__dirname, 'src')}/`,
+      '@types/': `${path.resolve(__dirname, 'src/common/types')}/`,
+      '@store/': `${path.resolve(__dirname, 'src/store')}/`,
     },
   },
   plugins: [
@@ -24,7 +24,7 @@ export default defineConfig({
 
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
-      extensions: ["vue"],
+      extensions: ['vue'],
     }),
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -33,14 +33,14 @@ export default defineConfig({
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: [
-        "vue",
-        "vue-router",
-        "vue-i18n",
-        "@vueuse/head",
-        "@vueuse/core",
-        "vitest",
+        'vue',
+        'vue-router',
+        'vue-i18n',
+        '@vueuse/head',
+        '@vueuse/core',
+        'vitest',
       ],
-      dts: "src/auto-imports.d.ts",
+      dts: 'src/auto-imports.d.ts',
     }),
 
     // https://github.com/antfu/unplugin-icons
@@ -50,28 +50,28 @@ export default defineConfig({
 
     // https://github.com/antfu/vite-plugin-pwa
     VitePWA({
-      registerType: "autoUpdate",
-      includeAssets: ["favicon.svg", "robots.txt", "safari-pinned-tab.svg"],
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
       manifest: {
-        name: "Vitesse",
-        short_name: "Vitesse",
-        theme_color: "#ffffff",
+        name: 'Vitesse',
+        short_name: 'Vitesse',
+        theme_color: '#ffffff',
         icons: [
           {
-            src: "/pwa-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
+            src: '/pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
           },
           {
-            src: "/pwa-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
+            src: '/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
           },
           {
-            src: "/pwa-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
+            src: '/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
           },
         ],
       },
@@ -81,7 +81,7 @@ export default defineConfig({
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
-      include: [path.resolve(__dirname, "locales/**")],
+      include: [path.resolve(__dirname, 'locales/**')],
     }),
 
     // https://github.com/antfu/vite-plugin-inspect
@@ -99,21 +99,21 @@ export default defineConfig({
 
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
-    script: "async",
-    formatting: "minify",
+    script: 'async',
+    formatting: 'minify',
   },
 
   optimizeDeps: {
-    include: ["vue", "vue-router", "@vueuse/core", "@vueuse/head"],
-    exclude: ["vue-demi"],
+    include: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
+    exclude: ['vue-demi'],
   },
 
   // https://github.com/vitest-dev/vitest
   test: {
-    include: ["test/**/*.test.ts"],
-    environment: "jsdom",
+    include: ['test/**/*.test.ts'],
+    environment: 'jsdom',
     deps: {
-      inline: ["@vue", "@vueuse", "vue-demi"],
+      inline: ['@vue', '@vueuse', 'vue-demi'],
     },
   },
 });
